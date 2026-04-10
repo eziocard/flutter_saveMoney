@@ -1,3 +1,3 @@
-# wallet
+#Primer Proyecto en flutter    
 
-A new Flutter project.
+aplicacion para registrar pagos,sin authenticacion real :0
