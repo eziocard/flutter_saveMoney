@@ -28,7 +28,7 @@ Widget build(BuildContext context) {
               children: [
                 Spacer(),
 
-                // TÍTULO
+      
                 Text(
                   'SaveYouMoney',
                   textAlign: TextAlign.center,
@@ -41,7 +41,7 @@ Widget build(BuildContext context) {
 
                 SizedBox(height: size.height * 0.01),
 
-                // SUBTÍTULO
+            
                 Text(
                   'Registra tus gastos',
                   style: TextStyle(
@@ -52,7 +52,7 @@ Widget build(BuildContext context) {
 
                 Spacer(),
 
-                // BOTÓN
+                
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(

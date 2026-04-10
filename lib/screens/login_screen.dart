@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet/components/buttonWidget.dart';
 import 'package:wallet/components/texfield.dart';
 import 'package:wallet/screens/dashboard_screen.dart';
 import 'package:wallet/screens/register_screen.dart';
@@ -48,7 +49,7 @@ Widget build(BuildContext context) {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // LOGO
+                
                 SizedBox(
                   height: size.height * 0.2,
                   child: Image.asset(
@@ -88,43 +89,16 @@ Widget build(BuildContext context) {
 
                 SizedBox(height: 30),
 
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all(Colors.black),
-                      foregroundColor:
-                          WidgetStateProperty.all(Colors.white),
-                    ),
-                    onPressed: _handleLogin,
-                    child: Text('Ingresar'),
-                  ),
-                ),
+                Buttonwidget(text: 'Ingresar', onPressed: _handleLogin),
 
                 SizedBox(height: 10),
-
                 
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all(Colors.orange),
-                      foregroundColor:
-                          WidgetStateProperty.all(Colors.white),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
+               Buttonwidget(text: 'Registrar',type: ButtonType.secondary, onPressed: (){Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => RegisterScreen(),
                         ),
-                      );
-                    },
-                    child: Text('Registrar'),
-                  ),
-                ),
+                      );})
               ],
             ),
           ),

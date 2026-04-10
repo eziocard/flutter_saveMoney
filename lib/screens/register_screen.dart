@@ -119,36 +119,33 @@ Widget build(BuildContext context) {
                 ),
                 SizedBox(height: 20),
 
-                Wrap(
-                  spacing: 20,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Radio<String>(
-                          value: 'Hombre',
-                          groupValue: genero,
-                          onChanged: (value) =>
-                              setState(() => genero = value),
-                        ),
-                        Text('Hombre'),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Radio<String>(
-                          value: 'Mujer',
-                          groupValue: genero,
-                          onChanged: (value) =>
-                              setState(() => genero = value),
-                        ),
-                        Text('Mujer'),
-                      ],
-                    ),
-                  ],
-                ),
-
+               RadioGroup<String>(
+  groupValue: genero,
+  onChanged: (value) {
+    setState(() {
+      genero = value;
+    });
+  },
+  child: Wrap(
+    spacing: 20,
+    children: [
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Radio<String>(value: 'Hombre'),
+          Text('Hombre'),
+        ],
+      ),
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Radio<String>(value: 'Mujer'),
+          Text('Mujer'),
+        ],
+      ),
+    ],
+  ),
+),
                 Row(
                   children: [
                     Checkbox(

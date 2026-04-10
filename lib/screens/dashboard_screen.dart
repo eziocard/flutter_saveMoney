@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet/components/CardItem.dart';
+import 'package:wallet/components/totalWidget.dart';
 import 'package:wallet/models/gasto.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -165,40 +166,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               child: Column(
                 children: [
-                  // 🔹 TARJETA TOTAL
-                  Container(
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: size.height * 0.02,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Gasto',
-                          style: TextStyle(
-                            fontSize: size.width * 0.05,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Spacer(),
-                        Text(
-                          '\$${total.toStringAsFixed(0)}',
-                          style: TextStyle(
-                            fontSize: size.width * 0.06,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  
+                  Totalwidget(title: 'Total Gastos', total: total),
 
                   SizedBox(height: size.height * 0.03),
 
-                  // 🔹 LISTA
+                 
                   Expanded(
                     child: Container(
                       width: double.infinity,
@@ -245,7 +218,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ),
 
-      // 🔹 BOTÓN +
+  
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           _openModal(context, size);
