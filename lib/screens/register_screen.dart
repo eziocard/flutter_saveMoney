@@ -57,123 +57,125 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Registro'),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-      ),
-      backgroundColor: Colors.amber,
-      body: Padding(
-        padding: const EdgeInsets.only(left: 60, right: 60, top: 150),
-        child: Column(
-          children: [
-            Text(
-              'Crear Cuenta',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight(600)),
+Widget build(BuildContext context) {
+  final size = MediaQuery.of(context).size;
+
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('Registro'),
+      backgroundColor: Colors.black,
+      foregroundColor: Colors.white,
+    ),
+    backgroundColor: Colors.amber,
+    body: SingleChildScrollView(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 500),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: size.width * 0.08,
+              vertical: size.height * 0.05,
             ),
-            SizedBox(height: 32),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: TextFieldComponent(
-                text: 'Ingresa tu Nombre',
-                password: false,
-                controller: _nameController,
-                icon: Icons.person,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: TextFieldComponent(
-                text: 'Apellido',
-                password: false,
-                controller: _lastnameController,
-                icon: Icons.person,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: TextFieldComponent(
-                text: 'Nombre de usuario',
-                password: false,
-                controller: _userController,
-                icon: Icons.verified_user,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: TextFieldComponent(
-                text: 'Contraseña',
-                password: true,
-                controller: _passwordController,
-                icon: Icons.key,
-              ),
-            ),
-            Row(
+            child: Column(
               children: [
-                RadioGroup<String>(
-                  groupValue: _genero,
-                  onChanged: (value) => setState(() => _genero = value),
-                  child: Row(
-                    children: [
-                      Radio<String>(value: 'Hombre'),
-                      Text(
-                        'Hombre',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight(600),
+                Text(
+                  'Crear Cuenta',
+                  style: TextStyle(
+                    fontSize: size.width * 0.08,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: size.height * 0.04),
+
+                TextFieldComponent(
+                  text: 'Ingresa tu Nombre',
+                  password: false,
+                  controller: _nameController,
+                  icon: Icons.person,
+                ),
+                SizedBox(height: 10),
+
+                TextFieldComponent(
+                  text: 'Apellido',
+                  password: false,
+                  controller: _lastnameController,
+                  icon: Icons.person,
+                ),
+                SizedBox(height: 10),
+
+                TextFieldComponent(
+                  text: 'Nombre de usuario',
+                  password: false,
+                  controller: _userController,
+                  icon: Icons.verified_user,
+                ),
+                SizedBox(height: 10),
+
+                TextFieldComponent(
+                  text: 'Contraseña',
+                  password: true,
+                  controller: _passwordController,
+                  icon: Icons.key,
+                ),
+                SizedBox(height: 20),
+
+                Wrap(
+                  spacing: 20,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Radio<String>(
+                          value: 'Hombre',
+                          groupValue: _genero,
+                          onChanged: (value) =>
+                              setState(() => _genero = value),
                         ),
-                      ),
-                      SizedBox(width: 20),
-                      Radio<String>(value: 'Mujer'),
-                      Text(
-                        'Mujer',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight(600),
+                        Text('Hombre'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Radio<String>(
+                          value: 'Mujer',
+                          groupValue: _genero,
+                          onChanged: (value) =>
+                              setState(() => _genero = value),
                         ),
-                      ),
-                    ],
+                        Text('Mujer'),
+                      ],
+                    ),
+                  ],
+                ),
+
+                Row(
+                  children: [
+                    Checkbox(
+                      value: _isChecked,
+                      onChanged: (value) {
+                        setState(() => _isChecked = value!);
+                      },
+                    ),
+                    Text('Acepto los términos'),
+                  ],
+                ),
+
+                SizedBox(height: 20),
+
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: _handleRegister,
+                    child: Text('Registrar'),
                   ),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: Row(
-                children: [
-                  Checkbox(
-                    checkColor: Colors.white,
-                    value: _isChecked,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        _isChecked = value!;
-                      });
-                    },
-                  ),
-                  Text(
-                    'Acepto los términos',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-            ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.orange),
-                foregroundColor: WidgetStateProperty.all(Colors.white),
-              ),
-              onPressed: () {
-                _handleRegister();
-              },
-              child: Text('Registrar'),
-            ),
-          ],
+          ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }
