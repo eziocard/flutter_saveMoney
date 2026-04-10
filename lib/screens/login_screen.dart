@@ -11,17 +11,17 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _userController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController userController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   String usernameHint = 'Usuario';
   String passwordHint = 'Contraseña';
   void _handleLogin() {
-    print('Usuario: ${_userController.text}');
-    print('Contraseña: ${_passwordController.text}');
+    print('Usuario: ${userController.text}');
+    print('Contraseña: ${passwordController.text}');
 
 
-     if (_userController.text == 'ricardo' && _passwordController.text == '1234') {
-        Navigator.push(context,MaterialPageRoute(builder: (context) => DashboardScreen(username: _userController.text)));
+     if (userController.text == 'ricardo' && passwordController.text == '1234') {
+        Navigator.push(context,MaterialPageRoute(builder: (context) => DashboardScreen(username: userController.text)));
   } else {
       setState(() {
       usernameHint = 'Usuario incorrecto';
@@ -74,7 +74,7 @@ Widget build(BuildContext context) {
                 TextFieldComponent(
                   text: usernameHint,
                   icon: Icons.account_box,
-                  controller: _userController,
+                  controller: userController,
                 ),
 
                 SizedBox(height: 20),
@@ -82,7 +82,7 @@ Widget build(BuildContext context) {
                 TextFieldComponent(
                   text: passwordHint,
                   icon: Icons.key,
-                  controller: _passwordController,
+                  controller: passwordController,
                   password: true,
                 ),
 

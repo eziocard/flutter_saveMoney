@@ -23,14 +23,14 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   List<Gasto> gastos = [];
 
-  final TextEditingController _titleController = TextEditingController();
-  final TextEditingController _mountController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController mountController = TextEditingController();
 
   double total = 0.0;
 
   void _handleSubmit() {
-    String title = _titleController.text;
-    double mount = double.tryParse(_mountController.text) ?? 0;
+    String title = titleController.text;
+    double mount = double.tryParse(mountController.text) ?? 0;
 
     if (title.isNotEmpty && mount > 0) {
       setState(() {
@@ -38,8 +38,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
         total = gastos.fold(0, (sum, g) => sum + g.mount);
 
-        _titleController.clear();
-        _mountController.clear();
+        titleController.clear();
+        mountController.clear();
       });
     }
   }
@@ -79,13 +79,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   SizedBox(height: 20),
 
                   TextField(
-                    controller: _titleController,
+                    controller: titleController,
                     maxLength: 20,
                     decoration: InputDecoration(labelText: "Título"),
                   ),
 
                   TextField(
-                    controller: _mountController,
+                    controller: mountController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(labelText: "Monto"),
                   ),

@@ -10,19 +10,19 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _lastnameController = TextEditingController();
-  final TextEditingController _userController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  String? _genero;
-  bool _isChecked = false;
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController lastnameController = TextEditingController();
+  final TextEditingController userController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  String? genero;
+  bool isChecked = false;
 
   void _handleRegister() {
-      if (_nameController.text.isEmpty ||
-      _lastnameController.text.isEmpty ||
-      _userController.text.isEmpty ||
-      _passwordController.text.isEmpty ||
-      _genero == null) {
+      if (nameController.text.isEmpty ||
+      lastnameController.text.isEmpty ||
+      userController.text.isEmpty ||
+      passwordController.text.isEmpty ||
+      genero == null) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Por favor completa todos los campos'),
@@ -31,13 +31,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
     return; 
   }
-    print('Nombre: ${_nameController.text}');
-    print('Apellido: ${_lastnameController.text}');
-    print('Usuario: ${_userController.text}');
-    print('Contraseña: ${_passwordController.text}');
-    print('Genero: $_genero');
+    print('Nombre: ${nameController.text}');
+    print('Apellido: ${lastnameController.text}');
+    print('Usuario: ${userController.text}');
+    print('Contraseña: ${passwordController.text}');
+    print('Genero: $genero');
 
-    if (!_isChecked) {
+    if (!isChecked) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Debes aceptar los términos')),
       );
@@ -47,10 +47,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       context,
       MaterialPageRoute(
         builder: (context) => DashboardScreen(
-          username: _userController.text,
-          name: _nameController.text,
-          lastname: _lastnameController.text,
-          genero: _genero,
+          username: userController.text,
+          name: nameController.text,
+          lastname: lastnameController.text,
+          genero: genero,
         ),
       ),
     );
@@ -90,7 +90,7 @@ Widget build(BuildContext context) {
                 TextFieldComponent(
                   text: 'Ingresa tu Nombre',
                   password: false,
-                  controller: _nameController,
+                  controller: nameController,
                   icon: Icons.person,
                 ),
                 SizedBox(height: 10),
@@ -98,7 +98,7 @@ Widget build(BuildContext context) {
                 TextFieldComponent(
                   text: 'Apellido',
                   password: false,
-                  controller: _lastnameController,
+                  controller: lastnameController,
                   icon: Icons.person,
                 ),
                 SizedBox(height: 10),
@@ -106,7 +106,7 @@ Widget build(BuildContext context) {
                 TextFieldComponent(
                   text: 'Nombre de usuario',
                   password: false,
-                  controller: _userController,
+                  controller: userController,
                   icon: Icons.verified_user,
                 ),
                 SizedBox(height: 10),
@@ -114,7 +114,7 @@ Widget build(BuildContext context) {
                 TextFieldComponent(
                   text: 'Contraseña',
                   password: true,
-                  controller: _passwordController,
+                  controller: passwordController,
                   icon: Icons.key,
                 ),
                 SizedBox(height: 20),
@@ -127,9 +127,9 @@ Widget build(BuildContext context) {
                       children: [
                         Radio<String>(
                           value: 'Hombre',
-                          groupValue: _genero,
+                          groupValue: genero,
                           onChanged: (value) =>
-                              setState(() => _genero = value),
+                              setState(() => genero = value),
                         ),
                         Text('Hombre'),
                       ],
@@ -139,9 +139,9 @@ Widget build(BuildContext context) {
                       children: [
                         Radio<String>(
                           value: 'Mujer',
-                          groupValue: _genero,
+                          groupValue: genero,
                           onChanged: (value) =>
-                              setState(() => _genero = value),
+                              setState(() => genero = value),
                         ),
                         Text('Mujer'),
                       ],
@@ -152,9 +152,9 @@ Widget build(BuildContext context) {
                 Row(
                   children: [
                     Checkbox(
-                      value: _isChecked,
+                      value: isChecked,
                       onChanged: (value) {
-                        setState(() => _isChecked = value!);
+                        setState(() => isChecked = value!);
                       },
                     ),
                     Text('Acepto los términos'),
